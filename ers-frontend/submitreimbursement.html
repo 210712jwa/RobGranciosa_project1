@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Submit Reimbursement Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 825px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button title="logo" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">
+        Rob & Co.
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/viewreimbursements.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/index.html"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="/viewreimbursements.html">View Your Reimbursements</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Submit Reimbursement Request</h1><section id="ships"> <br>
+        <section id="submissionform">
+            <form class="form" id="reimbursementForm">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Reimbursement Amount</label><br>
+                  <input type="number" min="0.01" step="0.01" class="col-auto" placeholder="$0.00" id="amount">
+                </div>
+                <div class="form-group">
+                  <select class="form-select" input type="text" title ="type" id="type">
+                    <option>Please select reimbursement type...</option>
+                    <option value="1">Lodging</option>
+                    <option value="2">Food</option>
+                    <option value="3">Travel</option>
+                    <option value="4">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Reimbursement Description</label>
+                  <textarea class="form-control" input type="text" rows="3" placeholder="Briefly describe your reimbursement request here." id="description"></textarea>
+                </div>
+
+                <div class="custom-file">
+                    <label class="custom-file-label" for="customFile">Upload Reimbursement Receipt</label>
+                    <input type="file" class="custom-file-input" id="customFile">
+                    
+                  </div> <br>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2" id="submit">Submit</button>
+                  </div>
+
+                  
+              </form>
+
+        </section>
+
+        <br>
+
+        <h3>What is an Expense Reimbursement?</h3><br>
+      <p>Employees frequently pay company expenses - such as lodging, travel, meal, or entertainment expenses - out of their own pocket, and then ask for reimbursement.</p>
+     <br>
+     <p>What is an expense reimbursement? Generally speaking, to qualify as an expense reimbursement:</p>
+    
+     <ul style="list-style-type:circle">
+        <li>The expense must be for deductible business expenses that are paid or incurred by an employee in the course of performing services for Rob & Co.</li>
+        <li>You must be able to substantiate the amount, time, use, and business purpose of the reimbursed expenses.</li>
+      </ul>
+
+      <hr>
+      <h4>Further questions?</h4>
+      <p>Contact Rob Granciosa for more information:</p>
+      <p>Email: <a href = "mailto: roberto.granciosa@revature.net.">roberto.granciosa@revature.net</a></p>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>
+            ADS
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Product of Rob & Co.</p>
+</footer>
+
+<script src="js/addSubmission.js"></script>
+</body>
+</html>

@@ -40,9 +40,9 @@ public class ReimbursementController implements Controller {
 				ctx.json(new MessageDTO("You are not authorized to retrieve reimbursement information"));
 				ctx.status(401);
 			}
-			
 		}
 	};
+	
 	
 	// Method allows user to create a reimbursement request. 
 	private Handler submissionHandler = (ctx) -> {
@@ -72,10 +72,22 @@ public class ReimbursementController implements Controller {
 		}
 	};
 	
+	// Now we need a method that allows a FINANCE MANAGER to view all of the reimbursement requests. 
+	private Handler getAllReimbursements = (ctx) -> {
+		HttpSession session = ctx.req.getSession();
+		
+		List<Reimbursement> reimbursements = rs.getAllReimbursements();
+		
+		ctx.json(reimbursements);
+		ctx.status(200);
+	};
+	
+	
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.get("/user/:userid/reimbursement", getReimbsBelogingToSpecificUser);
 		app.post("/user/:userid/reimbursement", submissionHandler);
+		app.get("/reimbursement", getAllReimbursements);
 	}
 
 }

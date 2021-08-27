@@ -22,6 +22,11 @@ public class ReimbursementService {
 		return reimbursements;
 	}
 	
+	public List<Reimbursement> getAllReimbursements() {
+		List<Reimbursement> reimbursements = reimbursementDao.getAllReimbursements();
+		return reimbursements;
+	}
+	
 	public Reimbursement addSubmission(String userId, SubmissionDTO reimbursement) {
 		int id = Integer.parseInt(userId);
 		

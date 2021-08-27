@@ -6,6 +6,8 @@ public class LoginDTO {
 
 	private String username;
 	private String password;
+	// adding String UserRole for FM functionality
+	// private String userRole;
 	
 	public LoginDTO() {
 		super();
@@ -17,6 +19,13 @@ public class LoginDTO {
 		this.password = password;
 	}
 
+//	public LoginDTO(String username, String password, String userRole) {
+//		super();
+//		this.username = username;
+//		this.password = password;
+//		this.userRole = userRole;
+//	}
+	
 	public String getUsername() {
 		return username;
 	}

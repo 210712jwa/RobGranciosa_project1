@@ -20,11 +20,26 @@ public class ReimbursementDAO {
 	public List<Reimbursement> getAllReimbursementsFromUserId(int id) {
 		SessionFactory sf = SessionFactorySingleton.getSessionFactory();
 		Session session = sf.openSession();
-		Transaction tx = session.beginTransaction();
+		// Transaction tx = session.beginTransaction();
 		
 		List<Reimbursement> reimbursements = session.createQuery("SELECT r FROM Reimbursement r JOIN r.author u WHERE u.userId = :userid").setParameter("userid", id).getResultList();
 		return reimbursements;
 	}
+	
+	public List<Reimbursement> getAllReimbursements() {
+		SessionFactory sf = SessionFactorySingleton.getSessionFactory();
+		Session session = sf.openSession();
+		List<Reimbursement> reimbursements = session.createQuery("FROM Reimbursement").getResultList();
+		
+		return reimbursements;
+	}
+	
+//	public List<Reimbursement> getAllReimbursementsForFinance() {
+//		SessionFactory sf = SessionFactorySingleton.getSessionFactory();
+//		Session sess
+//		
+//		return null;
+//	}
 	
 	public Reimbursement addSubmission(int id, SubmissionDTO submissionDto) {
 		

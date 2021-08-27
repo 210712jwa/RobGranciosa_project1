@@ -44,10 +44,23 @@ public class LoginController implements Controller {
 		}
 	};
 	
+//	private Handler FMLoginHandler = (ctx) -> {
+//		LoginDTO loginDto = ctx.bodyAsClass(LoginDTO.class);
+//		
+//		User manager = loginService.login(loginDto);
+//		
+//		HttpSession httpSession = ctx.req.getSession();
+//		httpSession.setAttribute("financeManager", manager);
+//		ctx.json(manager);
+//		ctx.status(200);
+//	};
+	
+	
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.post("/login", loginHandler);
 		app.get("currentuser", currentUserHandler);
+		//app.get("financeManager", FMLoginHandler);
 	}
 
 	

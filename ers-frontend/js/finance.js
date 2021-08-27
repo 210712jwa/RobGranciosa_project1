@@ -52,9 +52,6 @@ function populateReimbursements(reimbArray) {
             currency: 'USD',
           });
 
-        // let timeSubmittedTd = document.createElement('td');
-        // timeSubmittedTd.innerHTML = reimbursement.timeSubmitted;
-
         let timeSubmittedTd = document.createElement('td');
         timeSubmittedTd.innerHTML = new Date(reimbursement.timeSubmitted).toISOString().slice(0, 10);
 
@@ -73,6 +70,7 @@ function populateReimbursements(reimbArray) {
         let denyButton = document.createElement("BUTTON");
         denyButton.innerHTML = "Deny";
 
+
         tr.appendChild(reimbIdTd);
         tr.appendChild(reimbFirstNameTd);
         tr.appendChild(reimbLastNameTd);
@@ -85,10 +83,13 @@ function populateReimbursements(reimbArray) {
         tr.appendChild(approveButton);
         tr.appendChild(denyButton);
 
-        tbody.appendChild(tr);
-
         approveButton.setAttribute('id', (String(reimbursement.reimbId) + "approve"));
         denyButton.setAttribute('id', (String(reimbursement.reimbId) + "deny"));
+        
+        
+        tbody.appendChild(tr);
+
+
     }
 }
 

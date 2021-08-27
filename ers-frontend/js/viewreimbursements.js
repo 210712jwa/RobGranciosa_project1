@@ -73,5 +73,5 @@ function populateReimbursements(reimbArray) {
         tbody.appendChild(tr);
     }
 }
-
+ 
 window.addEventListener('load', onLoad);

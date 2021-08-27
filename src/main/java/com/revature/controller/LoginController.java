@@ -55,12 +55,23 @@ public class LoginController implements Controller {
 //		ctx.status(200);
 //	};
 	
+	private Handler logoutHandler = (ctx) -> {
+		if (ctx.sessionAttribute("currentUser") == null) {
+			ctx.json(new MessageDTO("You are already logged out"));
+			ctx.status(400);
+		}
+		else {
+			ctx.req.getSession().invalidate();
+			ctx.json(new MessageDTO("You have successfully logged out"));
+			ctx.status(200);
+		}
+	};
 	
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.post("/login", loginHandler);
 		app.get("currentuser", currentUserHandler);
-		//app.get("financeManager", FMLoginHandler);
+		app.post("/logout", logoutHandler);
 	}
 
 	

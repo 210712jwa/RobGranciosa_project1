@@ -1,6 +1,3 @@
-/*
-If user is not logged in, they will be redirected to the /index.html page. 
-*/
 function onLoad(event) {
     fetch('http://localhost:7000/currentuser', {
         'credentials': 'include',
@@ -12,19 +9,21 @@ function onLoad(event) {
             return response.json();
         }
     }).then((user) => {
-        return fetch(`http://localhost:7000/user/${user.userId}/reimbursement`, {
+
+        if (user.userRole.userRoleId != 2) {
+            window.location.href = '/unauthorized.html'
+        };
+        return fetch('http://localhost:7000/reimbursement', {
             'method': 'GET', 
             'credentials': 'include'
         });
     }).then((response) => {
         return response.json()
     }).then((reimbursements) => {
-        populateReimbursements(reimbursements);
-
+        populateReimbursements(reimbursements)
     })
-}
+};
 
-// remember that 'reimbursements' is an array. 
 
 function populateReimbursements(reimbArray) {
     let tbody = document.querySelector('#reimbursements tbody');
@@ -33,8 +32,16 @@ function populateReimbursements(reimbArray) {
 
         let tr = document.createElement('tr');
 
+
+
         let reimbIdTd = document.createElement('td');
         reimbIdTd.innerHTML = reimbursement.reimbId;
+
+        let reimbFirstNameTd = document.createElement('td');
+        reimbFirstNameTd.innerHTML = reimbursement.author.firstName;
+
+        let reimbLastNameTd = document.createElement('td');
+        reimbLastNameTd.innerHTML = reimbursement.author.lastName;
 
         let reimbDescriptionTd = document.createElement('td');
         reimbDescriptionTd.innerHTML = reimbursement.description;
@@ -45,11 +52,14 @@ function populateReimbursements(reimbArray) {
             currency: 'USD',
           });
 
+        // let timeSubmittedTd = document.createElement('td');
+        // timeSubmittedTd.innerHTML = reimbursement.timeSubmitted;
+
         let timeSubmittedTd = document.createElement('td');
         timeSubmittedTd.innerHTML = new Date(reimbursement.timeSubmitted).toISOString().slice(0, 10);
 
         let timeResolvedTd = document.createElement('td');
-        timeResolvedTd.innerHTML = "X";
+        timeResolvedTd.innerHTML = reimbursement.timeResolved;
 
         let reimbStatusTd = document.createElement('td');
         reimbStatusTd.innerHTML = reimbursement.status.status;
@@ -57,20 +67,28 @@ function populateReimbursements(reimbArray) {
         let reimbursementTypeTd = document.createElement('td');
         reimbursementTypeTd.innerHTML = reimbursement.type.type;
 
-  
+        let approveButton = document.createElement("BUTTON");
+        approveButton.innerHTML = "Approve";
+
+        let denyButton = document.createElement("BUTTON");
+        denyButton.innerHTML = "Deny";
 
         tr.appendChild(reimbIdTd);
+        tr.appendChild(reimbFirstNameTd);
+        tr.appendChild(reimbLastNameTd);
         tr.appendChild(reimbDescriptionTd);
         tr.appendChild(reimbAmountTd);
         tr.appendChild(timeSubmittedTd);
         tr.appendChild(timeResolvedTd);
         tr.appendChild(reimbStatusTd);
         tr.appendChild(reimbursementTypeTd);
- 
-
-    
+        tr.appendChild(approveButton);
+        tr.appendChild(denyButton);
 
         tbody.appendChild(tr);
+
+        approveButton.setAttribute('id', (String(reimbursement.reimbId) + "approve"));
+        denyButton.setAttribute('id', (String(reimbursement.reimbId) + "deny"));
     }
 }
 
